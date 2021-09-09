@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-//SIGNUP NEW USER
+//SIGNUP NEW USER - WORKS
 router.post('/signup', async (req, res) => {
     try {
         const userData = await User.create(req.body);
@@ -10,7 +10,6 @@ router.post('/signup', async (req, res) => {
             //add new key-value pairs to req.session
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-
             res.status(200).json(userData);
         });
     } catch (err) {
@@ -48,7 +47,8 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).json({error: err, message: 'Something went wrong'});
+        console.log(err);
     }
 });
 
