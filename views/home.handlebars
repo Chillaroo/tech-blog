@@ -1,1 +1,3 @@
-{{!-- render blog posts here --}}
+{{#each posts as |post|}}
+{{> home-details parent=.. }}
+{{/each}}
