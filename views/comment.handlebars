@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h5>{{post.title}}</h5>
+        <p>Posted by {{post.author}} on {{post.date_created}}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{post.content}}</p>
+    </div>
+</div>
+<br>
+<div class="accordion" id="accordionExample">
+{{#each post.comments as |comment|}}
+{{> comment-details parent=..}}
+{{/each}}
+</div>
+<br>
+<form id="comment">
+    <div class="form-group">
+        <label for="exampleFormControlInput1"></label>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Comment</label>
+        <textarea class="form-control" id="comment-content" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark">Post Comment</button>
+</form>
+<script src='/js/comment.js'></script>

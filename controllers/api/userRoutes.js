@@ -22,6 +22,11 @@ router.post('/signup', async (req, res) => {
 //EXISTING USER LOGIN
 router.post('/login', async (req, res) => {
     try {
+        if (!req.body.name||!req.body.password) {
+            res.status(400).json({message: 'Insufficient user data'})
+            return;
+        }
+
         const userData = await User.findOne({ where: { name: req.body.name } });
 
         if (!userData) {
